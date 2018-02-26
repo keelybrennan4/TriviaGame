@@ -9,16 +9,27 @@
 </head>
 <body>
     <h1>Trivia Game</h1>
-    
-    <div id ="start-game">
+
+    <div id="pre-game">
         <p>Game instructions....</p>
         <btn>Start Game</btn>
     </div>
-    <div id="questions">Here is my question div</div>
-    
-    <button id="submit">Submit</button>
-    <div id="results">Here is my results div</div>
 
+    <div id="game">
+         <div id="timer-display">00:00</div>
+        <div id="question">Here is my question div</div>
+        <button id="option1">Option1</button></br>
+        <button id="option2">Option2</button></br>
+        <button id="option3">Option3</button></br>
+        <button id="option4">Option4</button></br>
+    </div>
+
+
+    <div id="post-game">
+        <div id="results">Here is my results div</div>
+        <button id="restart-button">Try Again</button>
+    </div> 
+    
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
