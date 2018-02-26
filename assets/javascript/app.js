@@ -2,7 +2,7 @@ $( document ).ready(function() {
     console.log( "ready!" );
 
 //define global variables for scoring 
-var questionCount = 0;
+var questionCount = 1;
     //var currentQuestion = 0;
     //var correctAnswers = 0;
     //var incorrectAnswers = 0;
@@ -23,64 +23,56 @@ var trivia = [
 ]
 
 // to initialize the game
-function initialize(){
-    questionCount ++;
-    console.log(questionCount);
-}
+//function initialize(){
+    //questionCount ++;
+    //console.log(questionCount);
+//}
 
-//itterate through var trivia to determine the question (index 0++ of var trivia)
-for (var i=0; i < trivia.length; i++) {
-    $("#question").html(trivia[i][0]);
-    if (trivia.length[i] === questionCount) {
-        break;
-    }
-    console.log(trivia[i][0]);
 
-}
 //itterate through var trivia to determine the question (index 0++ of var trivia)
 for (var i=0; i < questionCount; i++) {
-    $("#option1").html(trivia[i][3]);
-    $("#option2").html(trivia[i][4]);
-    $("#option3").html(trivia[i][5]);
-    $("#option4").html(trivia[i][6]);
-    console.log(trivia[0][0]);
-}
-
-
-//to compare if selection is correct, we will convert the answer to a string and compare the string to string of index 2, which is always the correct answer
-
-// $("#question").html(trivia[1][1]);
-//$("#option1").html(trivia[2][2]);
-//$("#option2").html(trivia[3][3]);
-//$("#option3").html(trivia[0][3]);
-//$("#option4").html(trivia[0][4]);
-
-//$("#results").html(trivia[0][1]);
-
-
-
-
-// if (trivia[1) 
-
-// console.log(trivia[0][1]);
+    $("#question").html(trivia[i][0]);
+    console.log(trivia[i][0]);
+        $("#option1").html(trivia[i][2]);
+        $("#option2").html(trivia[i][3]);
+        $("#option3").html(trivia[i][4]);
+        $("#option4").html(trivia[i][5]);
+    }  
+        //here, we're checking to see if the userAnswer matches index 2 of the current question. 
+        //index 2 is always the correct answer in the trivia array. 
+        console.log(trivia[i][2]);
+            if(trivia[i][2] == "blue"){ //"userAnswer";
+                console.log("correct!");
+                //change html, stop timer, etc. 
+            }
+            else{
+            console.log("that's incorrect!");
+            }
 
 });
 
-
+    //for (var i=0; i < questionCount; i++) {
+    //if (trivia.length[i] === questionCount) {
+    //break;
 
 // -------  html ids ----------
 // "#timer-display"
 // "#pre-game"
 // "#post-game"
 // "#game"
-// ""
+// "answer"
+// $("#question").html(trivia[1][1]);
+// $("#option1").html(trivia[2][2]);
+// $("#option2").html(trivia[3][3]);
+// $("#option3").html(trivia[0][3]);
+// $("#option4").html(trivia[0][4]);
+// $("#results").html(trivia[0][1]);
 
 //---------- functions -------------- 
-
-    // function for countdown timer during guess 
-            // function questionCountown 
-    // function for hidden countdown timer between questions/ while answers are displayed so page automatically goes to new question after 
-            // function answerCountdown 
+// function for countdown timer during guess 
+    // function questionCountown 
+// function for hidden countdown timer between questions/ while answers are displayed so page automatically goes to new question after 
+    // function answerCountdown 
 
 // 1. Display instructions and use an event listener when the 'start quiz' button is clicked. 
     // $("#pre-game").on("click", function() {
@@ -127,3 +119,27 @@ for (var i=0; i < questionCount; i++) {
         //var incorrectAnswers
         //hide countdown timer 
     // "Try again?" button. on click = initializeGame 
+
+    
+//--------------------TIMER----------------------------------------//
+// need to fix 30 second countdown timer so that it starts when the "#start-button" is clicked.
+// $("#start-button").on("click, countdown());
+
+    var timeLeft = 30;
+    var answerInterval = 15;
+    var timerId = setInterval(countdown, 1000);
+
+    function countdown() {
+        if (timeLeft == -0) {
+            clearTimeout(timerId);
+            outOfTime();
+        } else {
+            timeLeft--;
+            console.log(timeLeft);
+            $("#timer-display").html(timeLeft + " seconds remain to answer the question"); 
+            }
+    }
+
+    function outOfTime() {
+        $("#timer-display").html("Out of time!"); // change to hide timer and then change content to 
+    }
