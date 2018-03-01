@@ -1,55 +1,138 @@
-$( document ).ready(function() {
-    console.log( "ready!" );
-
 //define global variables for scoring 
 var questionCount = 1;
-    //var currentQuestion = 0;
-    //var correctAnswers = 0;
-    //var incorrectAnswers = 0;
-    //var complete = false;
+var correctAnswers = 0;
+var incorrectAnswers = 0;
+// var currentQuestion = 0;
+//var complete = false;
+var trivia = [];
+var guess;
+var timerId;
 
 // define trivia question and answers in multidimensional array
-var trivia = [
-    ["What is the answer to question 1?", "apple", "apple", "Blue", "Red", "Purple"],
-    ["What is the answer to question 2?", "bird", "bird", "Cat", "Dog", "Mouse"],
-    ["What is the answer to question 3?", "cat", "cat", "Bed", "Pillow", "Couch"],
-    ["What is the answer to question 4?", "dog", "dog", "Car", "Van", "Taxi"],
-    ["What is the answer to question 5?", "egg", "egg", "Car", "Van", "Taxi"],
-    ["What is the answer to question 6?", "fish", "fish", "Car", "Van", "Taxi"],
-    ["What is the answer to question 7?", "gold", "gold", "Car", "Van", "Taxi"],
-    ["What is the answer to question 8?", "horse", "horse", "Car", "Van", "Taxi"],
-    ["What is the answer to question 9?", "ice", "ice", "Car", "Van", "Taxi"],
-    ["What is the answer to question 10?", "jack", "jack", "Car", "Van", "Taxi"],
-]
+trivia = [
+    {
+    question: "What is the answer to question 1?",
+    options: ["Apple", "Blue", "Red", "Purple"],
+    correct: 0   
+    }, {
+    question: "What is the answer to question 2?",
+    options: ["Bird", "Cat", "Dog", "Mouse"],
+    correct: 1   
+    }, {
+    question: "What is the answer to question 3?",
+    options: ["Gold", "Car", "Van", "Taxi"],
+    correct: 2     
+    }
+];
+
+gameLoop();
+
+//before the game starts we want to hide all content except the instrictions and start button
+$("#game").hide();
+$("#post-game").hide();
+$("#answer-game").hide();
+$("#question-game").hide();
+$("#question-count").hide();
+
+// function initializeGame(){
+$("#start-button").click(function(){
+    $("#pre-game").hide();
+    $("#game").show();
+    $("#question-game").show();
+    $("#question-count").show();
+    $("#question-count").html(questionCount); 
+    run();
+    console.log("The Question count is " + questionCount);
+})
+
+//itterate through var trivia to determine the question (index 0++ of var trivia)
+function gameLoop (){
+    for (var i=0; i < trivia.length; i++) {
+    $("#question").html(trivia[0].question);
+        $("#option1").html(trivia[i].options[0]);
+        $("#option2").html(trivia[i].options[1]);
+        $("#option3").html(trivia[i].options[2]);
+        $("#option4").html(trivia[i].options[3]);
+    } 
+
+$(".options").on("click", function () {
+    guess = trivia[0].correct[0];
+       
+    if (guess === $(this).value) {
+        console.log("That's correct");
+        $("#question-game").hide();
+        $("#answer-game").show();
+        correctAnswers++;
+        $("#correct").text("Correct Answers: " + correctAnswers);
+        stop();
+        i++
+        questionCount++
+        //make answers not selectable and correct answer green
+        setTimeout(gameLoop, 3000);   
+    } else {
+        console.log("That's wrong");
+        $("#question-game").hide();
+        $("#answer-game").show();
+        incorrectAnswers++;
+        $("#incorrect").text("Incorrect Answers: " + incorrectAnswers);
+        stop(); 
+        i++
+        questionCount++
+        //make answers not selectable and red
+        setTimeout(gameLoop, 3000); 
+    }
+    });
+};
+
+function run(){
+    timeLeft = 30;
+    clearInterval(timerId)
+    timerId = setInterval(countdown, 1000);
+}
+
+function countdown() {
+    if (timeLeft == 0) {
+        clearTimeout(timerId);
+        outOfTime();
+    } else {
+        timeLeft--;
+        console.log(timeLeft);
+        $("#timer-display").html(timeLeft + " seconds remain to answer the question"); 
+        }
+}
+
+function outOfTime() {
+    $("#timer-display").append("" + " Out of time!");
+    $("#answer-game").show();
+    incorrectAnswers++;
+    questionCount++;
+    //remove button selector ability? 
+    //change to hide timer and then change content to
+}
+
+function stop() {
+    timeLeft = 10;
+    clearInterval(timerId);
+    timerId = setInterval(countdown, 1000);
+    console.log(timeLeft);
+}
+
+
+//----- call next question and loop through again! ---- 
+
+  
+
+
+
+
 
 // to initialize the game
 //function initialize(){
     //questionCount ++;
     //console.log(questionCount);
 //}
+//$("h1").show();
 
-
-//itterate through var trivia to determine the question (index 0++ of var trivia)
-for (var i=0; i < questionCount; i++) {
-    $("#question").html(trivia[i][0]);
-    console.log(trivia[i][0]);
-        $("#option1").html(trivia[i][2]);
-        $("#option2").html(trivia[i][3]);
-        $("#option3").html(trivia[i][4]);
-        $("#option4").html(trivia[i][5]);
-    }  
-        //here, we're checking to see if the userAnswer matches index 2 of the current question. 
-        //index 2 is always the correct answer in the trivia array. 
-        console.log(trivia[i][2]);
-            if(trivia[i][2] == "blue"){ //"userAnswer";
-                console.log("correct!");
-                //change html, stop timer, etc. 
-            }
-            else{
-            console.log("that's incorrect!");
-            }
-
-});
 
     //for (var i=0; i < questionCount; i++) {
     //if (trivia.length[i] === questionCount) {
@@ -125,21 +208,41 @@ for (var i=0; i < questionCount; i++) {
 // need to fix 30 second countdown timer so that it starts when the "#start-button" is clicked.
 // $("#start-button").on("click, countdown());
 
-    var timeLeft = 30;
-    var answerInterval = 15;
-    var timerId = setInterval(countdown, 1000);
+    //var timeLeft = 30;
+    //var answerInterval = 15;
+    //var timerId = setInterval(countdown, 1000);
 
-    function countdown() {
-        if (timeLeft == -0) {
-            clearTimeout(timerId);
-            outOfTime();
-        } else {
-            timeLeft--;
-            console.log(timeLeft);
-            $("#timer-display").html(timeLeft + " seconds remain to answer the question"); 
-            }
-    }
+    //function countdown() {
+        //if (timeLeft == -0) {
+            //clearTimeout(timerId);
+            //outOfTime();
+       // } else {
+          //  timeLeft--;
+          //  console.log(timeLeft);
+          //  $("#timer-display").html(timeLeft + " seconds remain to answer the question"); 
+          //  }
+   // }
 
-    function outOfTime() {
-        $("#timer-display").html("Out of time!"); // change to hide timer and then change content to 
-    }
+   // function outOfTime() {
+       // $("#timer-display").html("Out of time!"); // change to hide timer and then change content to 
+   // }
+
+   //["What is the answer to question 1?", "apple", "apple", "Blue", "Red", "Purple"],
+    //["What is the answer to question 2?", "bird", "bird", "Cat", "Dog", "Mouse"],
+   // ["What is the answer to question 3?", "cat", "cat", "Bed", "Pillow", "Couch"],
+   // ["What is the answer to question 4?", "dog", "dog", "Car", "Van", "Taxi"],
+   // ["What is the answer to question 5?", "egg", "egg", "Car", "Van", "Taxi"],
+    //["What is the answer to question 6?", "fish", "fish", "Car", "Van", "Taxi"],
+   // ["What is the answer to question 7?", "gold", "gold", "Car", "Van", "Taxi"],
+   // ["What is the answer to question 8?", "horse", "horse", "Car", "Van", "Taxi"],
+   // ["What is the answer to question 9?", "ice", "ice", "Car", "Van", "Taxi"],
+   // ["What is the answer to question 10?", "jack", "jack", "Car", "Van", "Taxi"],]
+
+   //for (var i=0; i < questionCount; i++) {
+   // $("#question").html(trivia[i][0]);
+   // console.log(trivia[i][0]);
+   //     $("#option1").html(trivia[i][2]);
+   //     $("#option2").html(trivia[i][3]);
+   //     $("#option3").html(trivia[i][4]);
+   //     $("#option4").html(trivia[i][5]);
+   // }  
