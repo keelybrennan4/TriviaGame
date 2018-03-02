@@ -1,15 +1,14 @@
 //define global variables for scoring 
 var questionCount = 1;
-var correctAnswer = 0;
-var incorrectAnswer = 0;
-var unansweredQuestions = 0;
+var correctAnswers = 0;
+var incorrectAnswers = 0;
 // var currentQuestion = 0;
 //var complete = false;
 var trivia = [];
 var guess;
 var timerId;
 
-// create an array for questions, answers, an
+// define trivia question and answers in multidimensional array
 trivia = [
     {
     question: "What is the answer to question 1?",
@@ -28,20 +27,12 @@ trivia = [
 
 gameLoop();
 
-//----- FUNCTIONS ---------// 
 //before the game starts we want to hide all content except the instrictions and start button
-//I will use function initialScreen to reset the game 
-function initialScreen() {
-    $("#game").hide();
-    $("#post-game").hide();
-    $("#answer-game").hide();
-    $("#question-game").hide();
-    $("#question-count").hide();
-}
-
-initialScreen();
-
-//gameLoop();
+$("#game").hide();
+$("#post-game").hide();
+$("#answer-game").hide();
+$("#question-game").hide();
+$("#question-count").hide();
 
 // function initializeGame(){
 $("#start-button").click(function(){
@@ -56,41 +47,42 @@ $("#start-button").click(function(){
 
 //itterate through var trivia to determine the question (index 0++ of var trivia)
 function gameLoop (){
-  //  for (var i=0; i < trivia.length; i++) {
-   // $("#question").html(trivia[0].question);
-    //   $("#option1").html(trivia[i].options[0]);
-    //   $("#option2").html(trivia[i].options[1]);
-    //  $("#option3").html(trivia[i].options[2]);
-    //  $("#option4").html(trivia[i].options[3]);
-   // } 
+    for (var i=0; i < trivia.length; i++) {
+    $("#question").html(trivia[0].question);
+        $("#option1").html(trivia[i].options[0]);
+        $("#option2").html(trivia[i].options[1]);
+        $("#option3").html(trivia[i].options[2]);
+        $("#option4").html(trivia[i].options[3]);
+    } 
 
-    $(".options").on("click", ".answer-game", function(e) {
-        guess = $(this).text();
-        if(guess === correctAnswer[questionCounter]){
-            console.log("That's correct");
-            $("#question-game").hide();
-            $("#answer-game").show();
-            correctAnswer++;
-            $("#correct").text("Correct Answers: " + correctAnswer);
-            stop();
-            i++
-            questionCount++
-            //make answers not selectable and correct answer green
-            setTimeout(gameLoop, 3000);   
-        }
-        else {
-            console.log("That's wrong");
-            $("#question-game").hide();
-            $("#answer-game").show();
-            incorrectAnswer++;
-            $("#incorrect").text("Incorrect Answers: " + incorrectAnswer);
-            stop(); 
-            i++
-            questionCount++
-            //make answers not selectable and red
-            setTimeout(gameLoop, 3000); 
-        }
+$(".options").on("click", function () {
+    guess = trivia[0].correct[0];
+       
+    if (guess === $(this).value) {
+        console.log("That's correct");
+        $("#question-game").hide();
+        $("#answer-game").show();
+        correctAnswers++;
+        $("#correct").text("Correct Answers: " + correctAnswers);
+        stop();
+        i++
+        questionCount++
+        //make answers not selectable and correct answer green
+        setTimeout(gameLoop, 3000);   
+    } else {
+        console.log("That's wrong");
+        $("#question-game").hide();
+        $("#answer-game").show();
+        incorrectAnswers++;
+        $("#incorrect").text("Incorrect Answers: " + incorrectAnswers);
+        stop(); 
+        i++
+        questionCount++
+        //make answers not selectable and red
+        setTimeout(gameLoop, 3000); 
+    }
     });
+};
 
 function run(){
     timeLeft = 30;
@@ -112,7 +104,7 @@ function countdown() {
 function outOfTime() {
     $("#timer-display").append("" + " Out of time!");
     $("#answer-game").show();
-    incorrectAnswer++;
+    incorrectAnswers++;
     questionCount++;
     //remove button selector ability? 
     //change to hide timer and then change content to
@@ -125,7 +117,6 @@ function stop() {
     console.log(timeLeft);
 }
 
-//gameLoop();
 
 //----- call next question and loop through again! ---- 
 
@@ -254,4 +245,4 @@ function stop() {
    //     $("#option2").html(trivia[i][3]);
    //     $("#option3").html(trivia[i][4]);
    //     $("#option4").html(trivia[i][5]);
-   // }  
+   // } 
