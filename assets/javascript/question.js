@@ -1,5 +1,5 @@
 $(document).on("click", "button", function() {
-    
+
 // ---------GLOBAL VARIABLES --------// 
 var correctAnswer = 0;
 var incorrectAnswer = 0;
@@ -124,7 +124,7 @@ $("#start-button").click, function(){
         $(".question").empty();
         $(".answers").empty();
         $(".results").html("<p class='answer-message'>That's correct!</p>" + "<img src= " + trivia[questionCount].image + "</>");
-        setTimeout(nextQuestion, 1000);
+        setTimeout(nextQuestion, 1000 * 4);
         };
 
     //function for when user selects the correct answer 
@@ -134,7 +134,7 @@ $("#start-button").click, function(){
         $(".question").empty();
         $(".answers").empty();
         $(".results").html("<p class='answer-message'>That's incorrect!</p>" + "<img src= " + trivia[questionCount].image + "</>");
-        setTimeout(nextQuestion, 1000);
+        setTimeout(nextQuestion, 1000 *4);
     };
 
     //When user runs out of time
@@ -145,7 +145,7 @@ $("#start-button").click, function(){
         $(".question").empty();
         $(".answers").empty();
         $("results").html("<p class='answer-message'>Too slow!</p>" +"<img src= " + trivia[questionCount].image + "</>");
-        setTimeout(nextQuestion, 1000);
+        setTimeout(nextQuestion, 1000 *4);
     };
 
     function gameReset (){
