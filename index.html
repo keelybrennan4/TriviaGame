@@ -10,60 +10,28 @@
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class="row justify-content-center">
-            <div class="col-2">
-                
-            </div>
-        </div>
-    </div>
-</div> 
- 
-<div class="container">
+<div class ="container-game">
     <div class="row">       
         <div class="col-8">
-            <header>
-                <h1>Trivia Game</h1>
-                </br>
-                Question: <div id="question-count"></div>
-            </header>
-        
-        <div id="pre-game">
-            <button id="start-button">Start Game</button>
-        </div>
+            
+            <h1>Trivia Game</h1>
+            <button class="button" id="start-button">Start Game</button>
+            <div class="main-content">
+            <div class="timer"><span class="seconds"></span></div>
+            <br>
+      
+            <div class="question"></div>
+            <br>
+      
+            <div class="answers"></div>
+                    
+            <div class="results"></div> 
 
-        <div class="row" id="question-game">
-            <div id="timer-display">30 seconds remain to answer the question</div>
-            <div id="question"><h2>Here is my question div</h2></div>
-            </br>
-                <button type="button" class="btn btn-info btn-lg btn-block options" value="0" id="option1">Option1</button></br>
-                <button type="button" class="btn btn-info btn-lg btn-block options" value="1" id="option2">Option2</button><br>
-                <button type="button" class="btn btn-info btn-lg btn-block options" value="2" id="option3">Option3</button></br>
-                <button type="button" class="btn btn-info btn-lg btn-block options" value="3" id="option4">Option4</button></br>
-        </div> 
         </div>
-        
-        <div id="answer-game">
-            After the timer runs out, this is the answer content! 
-        </div>
-        <div class="score">
-            <div id="correct">Correct:</div>
-            <div id="incorrect">Incorrect: </div>
-        </div>
-
-        <div class="col-4">
-            <div id="post-game">
-                <div id="results">Here is my results div</div>
-                <button id="restart-button">Try Again</button>
-        </div> 
-        </div>
-
     </div>
-</div>
-
+</div>      
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script type="text/javascript" src="assets/javascript/question.js"></script>
 
 </body>
 </html>
