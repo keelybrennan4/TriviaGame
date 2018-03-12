@@ -5,7 +5,7 @@ var correctAnswer = 0;
 var incorrectAnswer = 0;
 var noAnswer = 0;
 var questionCount = 0;
-var timeLeft = 30;
+var timeLeft = 20;
 var timerId;
 
 // var trivia will store an array of objects. each property contains the value to a single trivia question, answer choice, or the correctAnswer answer. 
@@ -14,49 +14,49 @@ var trivia = [
     question: "How many pounds of cheese does the average American eat per year?",
     choice: ["9 pounds", "20 pounds", "28 pounds", "35 pounds"],
     correctAnswer: 3,
-    image: "./assets/images/image-1.gif",
+    gif: "../assets/images/image-1.gif",
 }, 
 {
-    question: "For a quality cheese, which of these varieties generally has the shortest aging time?",
+    question: "Which of these varieties generally has the shortest aging time?",
     choice: ["Sharp Cheddar", "Gorgonzola", "Gouda", "Parmigiano-Reggiano"],
     correctAnswer: 1,
-    image: "./assets/images/image-2.gif",
+    gif: "../assets/images/image-2.gif",
 }, 
 {
     question: "Bandel, Paneer, and Chhena are cheeses produced in what country?",
     choice: ["New Zealand", "Italy", "Russia", "India"],
     correctAnswer: 3,
-    image: "./assets/images/image-3.gif",
+    gif: "../assets/images/image-3.gif",
 }, 
 {
     question: "American Pepper Jack Cheese is a variety of which type of cheese?",
     choice: ["Lumber Jack", "Swiss", "Monterey Jack", "Cheddar"],
     correctAnswer: 2,
-    image: "./assets/images/image-4.gif",
+    gif: "../assets/images/image-4.gif",
 }, 
 {
-    question: "On average, how much does a wheel of Parmesan weigh?",
+    question: "On average, how many pounds does a wheel of Parmesan weigh?",
     choice: ["18 pounds", "44 pounds", "88 pounds", "132 pounds"],
     correctAnswer: 2,
-    image: "./assets/images/image-5.gif",
+    gif: "../assets/images/image-5.gif",
 }, 
 {
     question: "Fondue is a national dish of which European country?",
     choice: ["Belgium", "Norway", "Hungary", "Switzerland"],
     correctAnswer: 3,
-    image: "./assets/images/image-5.gif",
+    gif: "../assets/images/image-5.gif",
 }, 
 {
     question: "What has Wisconsin recently started doing with its excess cheese?",
-    choice: ["Using it to de-ice roads", "Using it as fertilizer", "Using it as a cow feed supplement", "Snacking"],
+    choice: ["de-ice roads", "fertilizer", "cow feed supplement", "snacking"],
     correctAnswer: 0,
-    image: "./assets/images/image-6.gif",
+    gif: "../assets/images/image-6.gif",
 }, 
 {
     question: "Which cheesy slogan was never uttered by Cheetos mascot Chester Cheetah?",
     choice: ["Dangerously cheesy!", "The cheese that goes crunch!", "It ain't easy bein' cheesy", "Say cheese!"],
     correctAnswer: 3,
-    image: "./assets/images/image-7.gif",
+    gif: "../assets/images/image-7.gif",
 }
 ]
 
@@ -64,12 +64,12 @@ var trivia = [
 //starts game the upon clicking the start button
 $("#start-button").click, function(){
     $(".timer").show();
+    countdown();
     $("#start-button").hide();
     correctAnwer = 0;
     incorrectAnswer= 0;
     noAnswer = 0;
-    buildQuiz();
-    countdown();
+    buildQuiz(); 
 }
 
 //--------30 SECOND COUNTDOWN TIMER---- // 
@@ -109,7 +109,7 @@ $("#start-button").click, function(){
         buildQuiz();
         $(".results").empty();
         $(".timer").show();
-        timeLeft = 30;
+        timeLeft = 20;
         countdown();
     } else {
         gameOver();
@@ -123,7 +123,7 @@ $("#start-button").click, function(){
         $(".timer").hide();
         $(".question").empty();
         $(".answers").empty();
-        $(".results").html("<p class='answer-message'>That's correct!</p>" + "<img src= " + trivia[questionCount].image + "</>");
+        $(".results").append("<p class='answer-message'>That's correct!</p> + trivia[questionCount].gif");
         setTimeout(nextQuestion, 1000 * 4);
         };
 
@@ -133,7 +133,7 @@ $("#start-button").click, function(){
         $(".timer").hide();
         $(".question").empty();
         $(".answers").empty();
-        $(".results").html("<p class='answer-message'>That's incorrect!</p>" + "<img src= " + trivia[questionCount].image + "</>");
+        $(".results").append("<p class='answer-message'>That's incorrect! The correct answer is" + " " + trivia[questionCount].choice[trivia[questionCount].correctAnswer] + "." + "</p>" + "<src=" + trivia[questionCount].gif + "</>");
         setTimeout(nextQuestion, 1000 *4);
     };
 
@@ -144,7 +144,7 @@ $("#start-button").click, function(){
         $(".timer").hide();
         $(".question").empty();
         $(".answers").empty();
-        $("results").html("<p class='answer-message'>Too slow!</p>" +"<img src= " + trivia[questionCount].image + "</>");
+        $(".results").html("<p class='answer-message'>Too slow!</p>" + "<src=" + trivia[questionCount].gif + "</>");
         setTimeout(nextQuestion, 1000 *4);
     };
 
