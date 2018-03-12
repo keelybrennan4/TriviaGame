@@ -14,49 +14,49 @@ var trivia = [
     question: "How many pounds of cheese does the average American eat per year?",
     choice: ["9 pounds", "20 pounds", "28 pounds", "35 pounds"],
     correctAnswer: 3,
-    //image: " ",
+    image: "./assets/images/image-1.gif",
 }, 
 {
     question: "For a quality cheese, which of these varieties generally has the shortest aging time?",
     choice: ["Sharp Cheddar", "Gorgonzola", "Gouda", "Parmigiano-Reggiano"],
     correctAnswer: 1,
-    //image: " ",
+    image: "./assets/images/image-2.gif",
 }, 
 {
     question: "Bandel, Paneer, and Chhena are cheeses produced in what country?",
     choice: ["New Zealand", "Italy", "Russia", "India"],
     correctAnswer: 3,
-    //image: " ",
+    image: "./assets/images/image-3.gif",
 }, 
 {
     question: "American Pepper Jack Cheese is a variety of which type of cheese?",
     choice: ["Lumber Jack", "Swiss", "Monterey Jack", "Cheddar"],
     correctAnswer: 2,
-    //image: " ",
+    image: "./assets/images/image-4.gif",
 }, 
 {
     question: "On average, how much does a wheel of Parmesan weigh?",
     choice: ["18 pounds", "44 pounds", "88 pounds", "132 pounds"],
     correctAnswer: 2,
-    //image: " ",
+    image: "./assets/images/image-5.gif",
 }, 
 {
     question: "Fondue is a national dish of which European country?",
     choice: ["Belgium", "Norway", "Hungary", "Switzerland"],
     correctAnswer: 3,
-    //image: " ",
+    image: "./assets/images/image-5.gif",
 }, 
 {
     question: "What has Wisconsin recently started doing with its excess cheese?",
     choice: ["Using it to de-ice roads", "Using it as fertilizer", "Using it as a cow feed supplement", "Snacking"],
     correctAnswer: 0,
-    //image: " ",
+    image: "./assets/images/image-6.gif",
 }, 
 {
     question: "Which cheesy slogan was never uttered by Cheetos mascot Chester Cheetah?",
     choice: ["Dangerously cheesy!", "The cheese that goes crunch!", "It ain't easy bein' cheesy", "Say cheese!"],
     correctAnswer: 3,
-    //image: " ",
+    image: "./assets/images/image-7.gif",
 }
 ]
 
